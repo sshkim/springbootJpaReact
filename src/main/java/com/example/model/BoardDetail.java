@@ -2,9 +2,7 @@ package com.example.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by sshkim on 2017. 3. 7..
@@ -12,10 +10,16 @@ import javax.persistence.Id;
 @Data
 @Entity
 public class BoardDetail {
-
-    private BoardDetail(){}
     private @Id @GeneratedValue Long id;
     private String memo;
     private String writer;
+
+    private BoardDetail() {
+    }
+
+    public BoardDetail(String memo, String writer) {
+        this.memo = memo;
+        this.writer = writer;
+    }
 
 }

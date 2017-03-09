@@ -2,9 +2,7 @@ package com.example.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by sshkim on 2017. 3. 7..
@@ -15,9 +13,14 @@ public class Board {
     private @Id @GeneratedValue Long id;
     private String title;
 
-    private Board(){}
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "boardDetail_id")
+    private BoardDetail boardDetail;
 
-    public Board(String title){
+    private Board() {
+    }
+
+    public Board(String title) {
         this.title = title;
     }
 }

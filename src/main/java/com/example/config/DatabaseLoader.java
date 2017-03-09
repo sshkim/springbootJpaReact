@@ -1,6 +1,7 @@
 package com.example.config;
 
 import com.example.model.Board;
+import com.example.model.BoardDetail;
 import com.example.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -24,6 +25,13 @@ public class DatabaseLoader implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         Board[] boards = new Board[10];
-        Stream.iterate(1, n -> n + 1).limit(10).forEach(n -> boards[n-1] = this.repository.save(new Board("Test_" + n)));
+        Stream.iterate(1, n -> n + 1).limit(10).forEach(n -> {
+                    Board tmp = new Board("Test_" + n);
+                    BoardDetail boardDetail = new BoardDetail("Memo_" + n, "Tester");
+                    tmp.setBoardDetail(boardDetail);
+                    boards[n - 1] = this.repository.save(tmp);
+                }
+        );
+
     }
 }
