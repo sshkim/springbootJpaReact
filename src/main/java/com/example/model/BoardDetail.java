@@ -4,15 +4,16 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-/**
- * Created by sshkim on 2017. 3. 7..
- */
 @Data
 @Entity
 public class BoardDetail {
     private @Id @GeneratedValue Long id;
     private String memo;
     private String writer;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "board_id")
+    private Board board;
 
     private BoardDetail() {
     }

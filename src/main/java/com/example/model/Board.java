@@ -4,9 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-/**
- * Created by sshkim on 2017. 3. 7..
- */
 @Data
 @Entity
 public class Board {
